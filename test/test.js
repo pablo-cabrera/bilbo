@@ -2,7 +2,7 @@
     "use strict";
 
     var YUITest = global.YUITest || require("yuitest"),
-        root = (typeof exports !== "undefined" && global.exports !== exports) ? process.cwd() : "..",
+        root = (typeof exports !== "undefined" && global.exports !== exports) ? process.cwd(): "..",
         bilbo = require(root + "/lib/bilbo"),
         Assert = YUITest.Assert,
 
@@ -17,24 +17,24 @@
 
         test = new YUITest.TestCase({
 
-            setUp : function() {
+            setUp: function() {
                 bilbo.vanish();
             },
 
-            _should : {
-                error : {
-                    "should fail when trying to grab something that isn't there" : "Couldn't find stuff: yo momma's ass"
+            _should: {
+                error: {
+                    "should fail when trying to grab something that isn't there": "Couldn't find stuff: yo momma's ass"
                 }
             },
 
-            name : "bilbo-test",
+            name: "bilbo-test",
 
-            "should create a new bag" : function() {
+            "should create a new bag": function() {
                 var bag = bilbo.bag();
                 Assert.isObject(bag);
             },
 
-            "should get rid of the bag" : function() {
+            "should get rid of the bag": function() {
                 var bag = bilbo.bag();
                 bag.vanish();
 
@@ -42,26 +42,26 @@
                 Assert.areNotSame(bag, newBag);
             },
 
-            "should get a different bag for a different name" : function() {
+            "should get a different bag for a different name": function() {
                 var bagX = bilbo.bag("x");
                 var bagY = bilbo.bag("y");
 
                 Assert.areNotSame(bagX, bagY);
             },
 
-            "should fail when trying to grab something that isn't there" : function() {
+            "should fail when trying to grab something that isn't there": function() {
                 var bag = bilbo.bag();
                 bag.grab("yo momma's ass");
             },
 
-            "should grab a stored stuff" : function() {
+            "should grab a stored stuff": function() {
                 var o = {};
                 var bag = bilbo.bag();
                 bag.stuff("a", o);
                 Assert.areSame(o, bag.grab("a"));
             },
 
-            "should grab a new object that has a stored object as prototype" : function() {
+            "should grab a new object that has a stored object as prototype": function() {
                 var o = { a: {}};
                 var bag = bilbo.bag();
                 bag.prototype("a", o);
@@ -71,7 +71,7 @@
                 Assert.isFalse(o2.hasOwnProperty("a"));
             },
 
-            "should grab a new stuff created by a stored factory" : function() {
+            "should grab a new stuff created by a stored factory": function() {
                 var arg1 = {},
                     arg2 = {},
                     o,
@@ -88,7 +88,7 @@
                 Assert.areSame(o, o2);
             },
 
-            "should grab a new stuff created by a stored lazy function, that should be called just once" : function() {
+            "should grab a new stuff created by a stored lazy function, that should be called just once": function() {
                 var arg1 = {},
                     arg2 = {},
                     o,
@@ -112,7 +112,7 @@
                 Assert.areSame(1, count);
             },
 
-            "shoud grab a new stuff using the stored function as a constructor for it" : function() {
+            "shoud grab a new stuff using the stored function as a constructor for it": function() {
                 var T = function() {};
 
                 var bag = bilbo.bag();
@@ -126,7 +126,7 @@
                 Assert.areNotSame(a, b);
             },
 
-            "shoud grab a new stuff using the stored function as a constructor for the singleton " : function() {
+            "shoud grab a new stuff using the stored function as a constructor for the singleton ": function() {
                 var T = function() {};
 
                 var bag = bilbo.bag();
@@ -140,13 +140,13 @@
                 Assert.areSame(a, b);
             },
 
-            "should allow to create a bag outside of bilbo and tell him to keep it" : function() {
+            "should allow to create a bag outside of bilbo and tell him to keep it": function() {
                 var bag = new bilbo.Bag("a");
                 bilbo.keep(bag);
                 Assert.areSame(bag, bilbo.bag("a"));
             },
 
-            "should create a bag that requires stuff as singleton" : function() {
+            "should create a bag that requires stuff as singleton": function() {
                 var requireName = root + "/test/requiring-test/a.js";
 
                 var bag = bilbo.requiringBag("a", root + "/test/requiring-test/");
@@ -157,6 +157,14 @@
                 } finally {
                     delete require.cache[requireName];
                 }
+            },
+
+            "should create a mocking bag that creates and stores an object when it cannot be found within": function() {
+                var bag = bilbo.mockingBag();
+                var o = bag.grab("yolo");
+
+                Assert.isObject(o);
+                Assert.areSame(o, bag.grab("yolo"));
             }
 
         });
