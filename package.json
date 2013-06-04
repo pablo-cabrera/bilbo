@@ -1,27 +1,42 @@
 {
-    "name" : "bilbo",
-    "version" : "0.0.1",
-    "author" : "Pablo Cabrera <pablo.cabrera.munoz@gmail.com>",
-    "main" : "./lib/bilbo.js",
+    "name": "bilbo",
+    "version": "0.0.1",
+    "contributors": [
+        {
+            "name": "Pablo Cabrera",
+            "email": "pablo.cabrera.munoz@gmail.com"
+        },
+        {
+            "name": "Thiago Caiubi",
+            "email": "thiago.caiubi@gmail.com"
+        }
+    ],
+    "main": "./lib/bilbo.js",
 
-    "devDependencies" : {
-        "grunt-contrib-jshint" : "*",
-        "grunt-contrib-uglify" : "*",
-        "grunt-contrib-yuidoc" : "~0.4.0",
 
-        "grunt" : "~0.4.0",
-        "grunt-shell" : "0.2.0",
-        "grunt-bump" : "0.0.2",
-
-        "ytestrunner" : "*",
-        "yuitest" : "*",
-
-        "colors" : "*"
+    "repository":  {
+        "type": "git",
+        "url": "http://github.com/pablo-cabrera/bilbo.git"
     },
 
-    "scripts" : {
-        "test" : "grunt"
+    "devDependencies": {
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-contrib-yuidoc": "~0.4.0",
+
+        "grunt": "~0.4.0",
+        "grunt-shell": "0.2.0",
+        "grunt-bump": "0.0.2",
+
+        "ytestrunner": "*",
+        "yuitest": "*",
+
+        "colors": "*"
     },
 
-    "license" : "MIT"
+    "scripts": {
+        "test": "grunt"
+    },
+
+    "license": "MIT"
 }
