@@ -1,6 +1,8 @@
 {
     "name": "bilbo",
-    "version": "0.0.2",
+    "description" : "Dependency Injection for JavaScript",
+    "version": "0.0.3",
+
     "contributors": [
         {
             "name": "Pablo Cabrera",
