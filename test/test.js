@@ -2,7 +2,7 @@
     "use strict";
 
     var YUITest = global.YUITest || require("yuitest"),
-        root = (typeof exports !== "undefined" && global.exports !== exports) ? process.cwd() + "/" : "../",
+        root = (typeof exports !== "undefined" && global.exports !== exports) ? process.cwd() : "..",
         bilbo = require(root + "/lib/bilbo"),
         Assert = YUITest.Assert,
 
@@ -110,6 +110,29 @@
                 Assert.areSame(o, o2);
                 Assert.areSame(o2, o3);
                 Assert.areSame(1, count);
+            },
+
+            "shoud grab a new stuff using the stored function as a constructor for it" : function() {
+            },
+
+            "should allow to create a bag outside of bilbo and tell him to keep it" : function() {
+                var bag = new bilbo.Bag("a");
+                bilbo.keep(bag);
+                Assert.areSame(bag, bilbo.bag("a"));
+            },
+
+            "should create a bag that requires stuff as singleton" : function() {
+                var requireName = root + "/test/requiring-test/a.js";
+
+                var bag = new bilbo.RequiringBag("a", root + "/test/requiring-test/");
+                bilbo.keep(bag);
+                try {
+                    var thing = bag.grab("a");
+                    Assert.areSame("asdf", thing.name);
+                    Assert.isTrue(requireName in require.cache);
+                } finally {
+                    delete require.cache[requireName];
+                }
             }
 
         });
