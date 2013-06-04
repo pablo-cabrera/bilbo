@@ -54,10 +54,10 @@
                 bag.grab("yo momma's ass");
             },
 
-            "should grab a stored singleton" : function() {
+            "should grab a stored stuff" : function() {
                 var o = {};
                 var bag = bilbo.bag();
-                bag.singleton("a", o);
+                bag.stuff("a", o);
                 Assert.areSame(o, bag.grab("a"));
             },
 
@@ -113,6 +113,31 @@
             },
 
             "shoud grab a new stuff using the stored function as a constructor for it" : function() {
+                var T = function() {};
+
+                var bag = bilbo.bag();
+                bag.type("a", T);
+                var a = bag.grab("a");
+                var b = bag.grab("a");
+
+                Assert.isInstanceOf(T, a);
+                Assert.isInstanceOf(T, b);
+
+                Assert.areNotSame(a, b);
+            },
+
+            "shoud grab a new stuff using the stored function as a constructor for the singleton " : function() {
+                var T = function() {};
+
+                var bag = bilbo.bag();
+                bag.singleton("a", T);
+                var a = bag.grab("a");
+                var b = bag.grab("a");
+
+                Assert.isInstanceOf(T, a);
+                Assert.isInstanceOf(T, b);
+
+                Assert.areSame(a, b);
             },
 
             "should allow to create a bag outside of bilbo and tell him to keep it" : function() {
@@ -124,8 +149,7 @@
             "should create a bag that requires stuff as singleton" : function() {
                 var requireName = root + "/test/requiring-test/a.js";
 
-                var bag = new bilbo.RequiringBag("a", root + "/test/requiring-test/");
-                bilbo.keep(bag);
+                var bag = bilbo.requiringBag("a", root + "/test/requiring-test/");
                 try {
                     var thing = bag.grab("a");
                     Assert.areSame("asdf", thing.name);
