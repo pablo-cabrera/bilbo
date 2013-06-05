@@ -1,13 +1,391 @@
 {
     "project": {
         "name": "bilbo",
-        "description": "",
-        "version": "0.0.1",
+        "description": "Dependency Injection for JavaScript",
+        "version": "0.0.6",
         "url": ""
     },
-    "files": {},
+    "files": {
+        "lib/bilbo.js": {
+            "name": "lib/bilbo.js",
+            "modules": {},
+            "classes": {
+                "bilbo.Bag": 1,
+                "bilbo.RequiringBag": 1,
+                "bilbo.MockingBag": 1,
+                "bilbo": 1
+            },
+            "fors": {
+                "bilbo.Bag": 1,
+                "bilbo.RequiringBag": 1,
+                "bilbo.MockingBag": 1,
+                "bilbo": 1
+            },
+            "namespaces": {}
+        }
+    },
     "modules": {},
-    "classes": {},
-    "classitems": [],
-    "warnings": []
+    "classes": {
+        "bilbo.Bag": {
+            "name": "bilbo.Bag",
+            "shortname": "bilbo.Bag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/bilbo.js",
+            "line": 68,
+            "description": "The standard bag.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The bag's name",
+                    "type": "String"
+                }
+            ]
+        },
+        "bilbo.RequiringBag": {
+            "name": "bilbo.RequiringBag",
+            "shortname": "bilbo.RequiringBag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/bilbo.js",
+            "line": 248,
+            "description": "The RequiringBag is a bag that tries to <b>require</b> things when\nthey are not found within. It's intended for <b>production</b> use.\n\nIt uses the thing's name along with it's given <b>root</b> to locate\nrequired things.\n\nThe require things can <b>hint</b> the RequiringBag to a specific\nstorage method. The requiring bag looks for a property named\n\"precious\" or \"〇\" (Unicode Character 'IDEOGRAPHIC NUMBER ZERO'\n(U+3007)) within the required thing. The property may have the\nfollowing values as hints: \"prototype\", <b>\"lazy\"</b>,\n<b>\"singleton\"</b>, <b>\"factory\"</b>, <b>\"type\"</b>, and\n<b>\"stuff\"</b>. The default storage method is <b>\"stuff\"</b>.",
+            "extends": "bilbo.Bag",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The bag's name",
+                    "type": "String"
+                },
+                {
+                    "name": "root",
+                    "description": "The bag's root",
+                    "type": "String"
+                }
+            ]
+        },
+        "bilbo.MockingBag": {
+            "name": "bilbo.MockingBag",
+            "shortname": "bilbo.MockingBag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/bilbo.js",
+            "line": 303,
+            "description": "The MockingBag is a bag creates and stores empty objects when things\nare not found within. It's intended for <b>testing</b> usage.\n\nWhen the bag creates objects it will store them with the \"stuff\"\nstorage method. Like so, modifying objects will modify created\nreferences within.",
+            "extends": "bilbo.Bag"
+        },
+        "bilbo": {
+            "name": "bilbo",
+            "shortname": "bilbo",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/bilbo.js",
+            "line": 336,
+            "description": "Bilbo baggins!",
+            "static": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/bilbo.js",
+            "line": 84,
+            "description": "Empties the bag, and vanishes it removing it from bilbo\naltogether.",
+            "itemtype": "method",
+            "name": "vanish",
+            "class": "bilbo.Bag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 96,
+            "description": "Empties the bag, removing all stored stuff from within",
+            "itemtype": "method",
+            "name": "empty",
+            "class": "bilbo.Bag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 106,
+            "description": "Tries to grab a stored stuff. If a given thing can't be found\nwithin the bag, it throws an error.\n\nIt may also receive aditional arguments if the storage method\nsupports varargs.",
+            "itemtype": "method",
+            "name": "grab",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The thing's name",
+                    "type": "String"
+                },
+                {
+                    "name": "args",
+                    "description": "Optional arguments passed to stored thing if supported",
+                    "type": "mixed..."
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Mixed"
+            },
+            "class": "bilbo.Bag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 127,
+            "description": "Stores an object within this bag under a given name. When\n<code>grab</code> is called, it will give a new object\nhaving the previous object as prototype.",
+            "itemtype": "method",
+            "name": "prototype",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The given name",
+                    "type": "String"
+                },
+                {
+                    "name": "proto",
+                    "description": "The object to be used as prototype",
+                    "type": "Object"
+                }
+            ],
+            "class": "bilbo.Bag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 145,
+            "description": "Stores something within the bag itself. When\n<code>grab</code> is called, it will give it back as is.",
+            "itemtype": "method",
+            "name": "stuff",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The given name",
+                    "type": "String"
+                },
+                {
+                    "name": "thing",
+                    "description": "The thing to be stored",
+                    "type": "Mixed"
+                }
+            ],
+            "class": "bilbo.Bag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 160,
+            "description": "Stores a lazy initializer. When <code>grab</code> is\ncalled, it will call the lazy function and return it's value.\nSubsequent calls will always receive the same value.\n\nThe lazy function may receive aditional arguments upon\ncalling <code>grab</code> as varargs",
+            "itemtype": "method",
+            "name": "lazy",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The given name",
+                    "type": "String"
+                },
+                {
+                    "name": "lazy",
+                    "description": "The lazy function",
+                    "type": "Function"
+                }
+            ],
+            "class": "bilbo.Bag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 186,
+            "description": "Stores a factory function. When <code>grab</code> is\ncalled, it will call the factory function and return it's\nvalue.\n\nThe factory function may receive aditional arguments upon\ncalling <code>grab</code> as varargs",
+            "itemtype": "method",
+            "name": "lazy",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The given name",
+                    "type": "String"
+                },
+                {
+                    "name": "factory",
+                    "description": "The factory function",
+                    "type": "Function"
+                }
+            ],
+            "class": "bilbo.Bag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 205,
+            "description": "Stores a constructor to be used as a singleton. When\n<code>grab</code> is called, it will instantiate the object\nusing the <code>type</code> as a constructor for it.\nSubsequent calls will always receive the same instance.\n\nThe constructor may receive aditional arguments upon calling\n<code>grab</code> as varargs",
+            "itemtype": "method",
+            "name": "singleton",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The given name",
+                    "type": "String"
+                },
+                {
+                    "name": "type",
+                    "description": "The singleton constructor",
+                    "type": "Function"
+                }
+            ],
+            "class": "bilbo.Bag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 226,
+            "description": "Stores a constructor to be used as a type constructor. When\n<code>grab</code> is called, it will instantiate the object\nusing the <code>type</code> as a constructor for it.\n\nThe constructor may receive aditional arguments upon calling\n<code>grab</code> as varargs",
+            "itemtype": "method",
+            "name": "singleton",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The given name",
+                    "type": "String"
+                },
+                {
+                    "name": "type",
+                    "description": "The type constructor",
+                    "type": "Function"
+                }
+            ],
+            "class": "bilbo.Bag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 277,
+            "description": "Just like bilbo.Bag's grab method but when it cannot find\nstuff within, it tries to require them",
+            "itemtype": "method",
+            "name": "grab",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The thing's name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Mixed"
+            },
+            "class": "bilbo.RequiringBag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 317,
+            "description": "Just like bilbo.Bag's grab method but when it cannot find\nstuff within, it creates a new object and stores within\nitself.",
+            "itemtype": "method",
+            "name": "grab",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The thing's name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Mixed"
+            },
+            "class": "bilbo.MockingBag"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 344,
+            "description": "Retrieves or creates a new bag",
+            "itemtype": "method",
+            "name": "bag",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The bag's name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "bilbo.Bag"
+            },
+            "class": "bilbo"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 361,
+            "description": "Creates and returns a <code>bilbo.RequiringBag</code>",
+            "itemtype": "method",
+            "name": "requiringBag",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The bag's name",
+                    "type": "String"
+                },
+                {
+                    "name": "root",
+                    "description": "The root directory from where to lookup requires",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "bilbo.RequiringBag"
+            },
+            "class": "bilbo"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 376,
+            "description": "Creates and returns a <code>bilbo.MockingBag</code>",
+            "itemtype": "method",
+            "name": "mockingBag",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The bag's name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "bilbo.MockingBag"
+            },
+            "class": "bilbo"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 390,
+            "description": "Gives a bag for bilbo to keep",
+            "params": [
+                {
+                    "name": "ba",
+                    "description": "",
+                    "type": "bilbo.Bag"
+                }
+            ],
+            "class": "bilbo"
+        },
+        {
+            "file": "lib/bilbo.js",
+            "line": 399,
+            "description": "Vanishes all bags reseting bilbo to it's initial state. All bags\nwill be emptied, existing references will still be valid, but all\nbags will have nothing inside.",
+            "itemtype": "method",
+            "name": "vanish",
+            "class": "bilbo"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nGives a bag for bilbo to keep",
+            "line": " lib/bilbo.js:390"
+        }
+    ]
 }

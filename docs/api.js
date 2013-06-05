@@ -1,6 +1,11 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
-    "classes": [],
+    "classes": [
+        "bilbo",
+        "bilbo.Bag",
+        "bilbo.MockingBag",
+        "bilbo.RequiringBag"
+    ],
     "modules": [],
     "allModules": []
 } };
