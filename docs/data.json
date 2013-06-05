@@ -2,7 +2,7 @@
     "project": {
         "name": "bilbo",
         "description": "Dependency Injection for JavaScript",
-        "version": "0.0.6",
+        "version": "0.0.7",
         "url": ""
     },
     "files": {
@@ -56,7 +56,7 @@
             "extension_for": [],
             "file": "lib/bilbo.js",
             "line": 248,
-            "description": "The RequiringBag is a bag that tries to <b>require</b> things when\nthey are not found within. It's intended for <b>production</b> use.\n\nIt uses the thing's name along with it's given <b>root</b> to locate\nrequired things.\n\nThe require things can <b>hint</b> the RequiringBag to a specific\nstorage method. The requiring bag looks for a property named\n\"precious\" or \"〇\" (Unicode Character 'IDEOGRAPHIC NUMBER ZERO'\n(U+3007)) within the required thing. The property may have the\nfollowing values as hints: \"prototype\", <b>\"lazy\"</b>,\n<b>\"singleton\"</b>, <b>\"factory\"</b>, <b>\"type\"</b>, and\n<b>\"stuff\"</b>. The default storage method is <b>\"stuff\"</b>.",
+            "description": "The RequiringBag is a bag that tries to <b>require</b> things when\nthey are not found within. It's intended for <b>production</b> use.\n\nIt uses the thing's name along with it's given <b>root</b> to locate\nrequired things.\n\nThe required things can <b>hint</b> the RequiringBag to a specific\nstorage method. The RequiringBag looks for a property named\n\"precious\" or \"〇\" (Unicode Character 'IDEOGRAPHIC NUMBER ZERO'\n(U+3007)) within the required thing. The property may have the\nfollowing values as hints: <b>\"prototype\"</b>, <b>\"lazy\"</b>,\n<b>\"singleton\"</b>, <b>\"factory\"</b>, <b>\"type\"</b>, and\n<b>\"stuff\"</b>. The default storage method is <b>\"stuff\"</b>.",
             "extends": "bilbo.Bag",
             "is_constructor": 1,
             "params": [
