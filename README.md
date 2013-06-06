@@ -1,4 +1,4 @@
 bilbo
 ======
 
-DI for javascript
+Dependency Injection for JavaScript
