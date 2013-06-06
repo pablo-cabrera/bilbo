@@ -1,4 +1,4 @@
-bilbo
+bilbo [![Build Status](https://travis-ci.org/thiagocaiubi/bilbo.png)](https://travis-ci.org/thiagocaiubi/bilbo)
 ======
 
-DI for javascript
+Dependency Injection for JavaScript
