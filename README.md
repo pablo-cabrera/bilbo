@@ -1,4 +1,4 @@
-bilbo [![Build Status](https://travis-ci.org/thiagocaiubi/bilbo.png)](https://travis-ci.org/thiagocaiubi/bilbo)
+bilbo [![Build Status](https://travis-ci.org/pablo-cabrera/bilbo.png)](https://travis-ci.org/pablo-cabrera/bilbo)
 ======
 
 Dependency Injection for JavaScript
