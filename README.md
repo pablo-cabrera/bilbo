@@ -3,7 +3,7 @@ bilbo [![Build Status](https://travis-ci.org/pablo-cabrera/bilbo.png)](https://t
 
 **Bilbo** is a simple dependency injection library for JavaScript. It's intended audience is for **node-js** applications, but it can also be used for **client-side** applications.
 
-He uses **bags** to store and distribute dependencies along your code. **Bags** are identifies by it's **name** within **bilbo**.
+He uses [**bags**](#bags) to store and distribute dependencies along your code. **Bags** are identifies by it's **name** within **bilbo**.
 
 ```js
 var bilbo = require("bilbo");
@@ -209,3 +209,9 @@ var someSingleton = bag.grab("args singleton name", arg1, arg2);
 someSingleton.a1 === arg1; // true
 someSingleton.a2 === arg2; // true
 ```
+
+## bags
+
+**Bilbo** has different types for **bags** for different occasions. 
+
+The standard **Bag** will issue an error whenever you tries to **grab** a stuff that isn't there. For testing purposes, **bilbo** offers a **MockingBag**, that builds mocks objects whenever you tri to graba a stuff that isn't there instead. Lastly, **bilbo** also offers a **RequiringBag** that will try to resolve dependencies on it's own whenever you try to require something that isn't there yet.
