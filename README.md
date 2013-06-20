@@ -253,7 +253,7 @@ following values as hints: [**"prototype"**](#prototype), [**"lazy"**](#lazy)
 // file: Thing.js
 
 var Thing = {
-  name: "Thing",
+  name: "Thing"
 };
 
 module.exports = Thing;
