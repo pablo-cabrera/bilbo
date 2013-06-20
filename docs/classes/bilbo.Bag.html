@@ -233,14 +233,14 @@
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_grab">grab</a>
+                                <a href="#method_factory">factory</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_lazy">lazy</a>
+                                <a href="#method_grab">grab</a>
 
                                 
                                 
@@ -268,14 +268,14 @@
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_singleton">singleton</a>
+                                <a href="#method_stuff">stuff</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_stuff">stuff</a>
+                                <a href="#method_type">type</a>
 
                                 
                                 
@@ -350,6 +350,119 @@
         <p>Empties the bag, removing all stored stuff from within</p>
     </div>
 
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_factory" class="method item">
+    <h3 class="name"><code>factory</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>factory</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/lib_bilbo.js.html#l186"><code>lib&#x2F;bilbo.js:186</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Stores a factory function. When <code>grab</code> is
+called, it will call the factory function and return it's
+value.</p>
+
+<p>The factory function may receive aditional arguments upon
+calling <code>grab</code> as varargs</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The given name</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">factory</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The factory function</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -599,119 +712,6 @@ calling <code>grab</code> as varargs</p>
 </div>
 
                 
-                    <div id="method_lazy" class="method item">
-    <h3 class="name"><code>lazy</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>name</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>factory</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/lib_bilbo.js.html#l186"><code>lib&#x2F;bilbo.js:186</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Stores a factory function. When <code>grab</code> is
-called, it will call the factory function and return it's
-value.</p>
-
-<p>The factory function may receive aditional arguments upon
-calling <code>grab</code> as varargs</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">name</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The given name</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">factory</code>
-                        <span class="type">Function</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The factory function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="method_prototype" class="method item">
     <h3 class="name"><code>prototype</code></h3>
 
@@ -807,120 +807,6 @@ having the previous object as prototype.</p>
 
                     <div class="param-description">
                         <p>The object to be used as prototype</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_singleton" class="method item">
-    <h3 class="name"><code>singleton</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>name</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>type</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/lib_bilbo.js.html#l205"><code>lib&#x2F;bilbo.js:205</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Stores a constructor to be used as a singleton. When
-<code>grab</code> is called, it will instantiate the object
-using the <code>type</code> as a constructor for it.
-Subsequent calls will always receive the same instance.</p>
-
-<p>The constructor may receive aditional arguments upon calling
-<code>grab</code> as varargs</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">name</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The given name</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">type</code>
-                        <span class="type">Function</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The singleton constructor</p>
                     </div>
 
                     
@@ -1143,6 +1029,120 @@ using the <code>type</code> as a constructor for it.</p>
 
                     <div class="param-description">
                         <p>The thing to be stored</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_type" class="method item">
+    <h3 class="name"><code>type</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>type</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/lib_bilbo.js.html#l205"><code>lib&#x2F;bilbo.js:205</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Stores a constructor to be used as a singleton. When
+<code>grab</code> is called, it will instantiate the object
+using the <code>type</code> as a constructor for it.
+Subsequent calls will always receive the same instance.</p>
+
+<p>The constructor may receive aditional arguments upon calling
+<code>grab</code> as varargs</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The given name</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">type</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The singleton constructor</p>
                     </div>
 
                     

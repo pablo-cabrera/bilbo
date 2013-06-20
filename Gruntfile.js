@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         },
 
         test : {
-            files : ["test/**/*.js"]
+            files : ["test/test.js"]
         },
 
         uglify : {

@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                     coverageReportFormat: 'lcov'
                 }, function(err, testData) {
                     //Async fail if any test fails
-                    done(testData.failed === 0);
+                    done(testData.total > 0 && testData.failed === 0);
                 });
             };
 

@@ -285,7 +285,7 @@
                  * The factory function may receive aditional arguments upon
                  * calling &lt;code&gt;grab&lt;/code&gt; as varargs
                  *
-                 * @method lazy
+                 * @method factory
                  * @for bilbo.Bag
                  * @param {string} name The given name
                  * @param {function} factory The factory function
@@ -305,7 +305,7 @@
                  * The constructor may receive aditional arguments upon calling
                  * &lt;code&gt;grab&lt;/code&gt; as varargs
                  *
-                 * @method singleton
+                 * @method type
                  * @for bilbo.Bag
                  * @param {string} name The given name
                  * @param {function} type The singleton constructor
@@ -346,8 +346,8 @@
          * It uses the thing&#x27;s name along with it&#x27;s given &lt;b&gt;root&lt;/b&gt; to locate
          * required things.
          *
-         * The required things can &lt;b&gt;hint&lt;/b&gt; the RequiringBag to a specific
-         * storage method. The RequiringBag looks for a property named
+         * The require things can &lt;b&gt;hint&lt;/b&gt; the RequiringBag to a specific
+         * storage method. The requiring bag looks for a property named
          * &quot;precious&quot; or &quot;〇&quot; (Unicode Character &#x27;IDEOGRAPHIC NUMBER ZERO&#x27;
          * (U+3007)) within the required thing. The property may have the
          * following values as hints: &lt;b&gt;&quot;prototype&quot;&lt;/b&gt;, &lt;b&gt;&quot;lazy&quot;&lt;/b&gt;,
