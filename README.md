@@ -18,7 +18,6 @@ Fetching things from a **bag** is done by the <code>bag.grab()</code> method. Ea
 var thing = bag.grab("thing's name");
 ```
 
-
 **Bags** can store things in many ways:
 
 - [**stuff**](#stuff): simple storage, no action performed
@@ -214,4 +213,83 @@ someSingleton.a2 === arg2; // true
 
 **Bilbo** has different types for **bags** for different occasions. 
 
-The standard **Bag** will issue an error whenever you tries to **grab** a stuff that isn't there. For testing purposes, **bilbo** offers a **MockingBag**, that builds mocks objects whenever you tri to graba a stuff that isn't there instead. Lastly, **bilbo** also offers a **RequiringBag** that will try to resolve dependencies on it's own whenever you try to require something that isn't there yet.
+The standard **Bag** will issue an error whenever you tries to **grab** a stuff that isn't there. For testing purposes, **bilbo** offers a [**MockingBag**](#nockingbag), that builds mocks objects whenever you try to grab a stuff that isn't there instead. Lastly, **bilbo** also offers a [**RequiringBag**](#requiringbag) that will try to resolve dependencies on it's own whenever you try to require something that isn't there yet.
+
+### MockingBag
+
+The **MockingBag** is a bag creates and stores empty objects when things are not found within. It's intended for **testing** usage.
+
+When the bag creates objects it will store them with the [**"stuff"**](#stuff) storage method. Like so, modifying objects will modify created references within.
+
+```js
+// Creates a MockingBag with the name "mocking bag's name"
+var bag = bilbo.mockingBag("mocking bag's name");
+
+// Creates an empty object and stores it under the "thing" name within the bag
+var thing = bag.grab("thing");
+thing instanceof Object; // true
+
+// References are kept, so if you ask for the same thing again, you'll get the same thing
+thing === bag.grab("thing"); // true
+```
+
+### RequiringBag
+
+The RequiringBag is a bag that tries to **require** things when
+they are not found within. It's intended for **production** use.
+
+It uses the thing's name along with it's given **root** to locate
+required things.
+
+The require things can **hint** the RequiringBag to a specific
+storage method. The requiring bag looks for a property named
+**"precious"** or **"〇"** (Unicode Character 'IDEOGRAPHIC NUMBER ZERO'
+(U+3007)) within the required thing. The property may have the
+following values as hints: [**"prototype"**](#prototype), [**"lazy"**](#lazy)
+[**"singleton"**](#singleton), [**"factory"**](#factory), [**"type"**](#type) and
+[**"stuff"**](#stuff). The default storage method is [**stuff**](#stuff).
+
+```js
+// file: Thing.js
+
+var Thing = {
+  name: "Thing",
+};
+
+module.exports = Thing;
+```
+
+```js
+// file: SomeThing.js
+
+var SomeThing = {
+  name: "SomeThing",
+  
+  // hints the RequiringBag to store this as a prototype
+  "〇" : "prototype" 
+};
+
+module.exports = SomeThing;
+```
+
+```js
+// Creates a RequiringBag with the name "requiring bag's name" using process.cwd() as root
+var bag = bilbo.requiringBag("requiring bag's name", process.cwd());
+
+// Forces the RequiringBag to look for a file named process.cwd() + "/Thing.js" and require it
+// Thing is stored with the default stuff storage method
+var thing = bag.grab("/Thing");
+
+thing instanceof Object; // true
+console.log(thing.name); // "Thing"
+thing === bag.grab("/Thing"); // true
+
+// Forces the RequiringBag to look for a file named process.cwd() + "/SomeThing.js" and require it.
+// SomeThing then hints the RequiringBag through the property "〇" that it should be stored as a prototype
+var someThing = bag.grab("/SomeThing");
+
+someThing instanceof Object; // true
+console.log(someThing.name); // "SomeThing"
+someThing.hasOwnProperty("name"); // false
+someThing === bag.grab("/SomeThing"); // false
+```
