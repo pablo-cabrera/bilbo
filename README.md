@@ -27,6 +27,7 @@ var thing = bag.grab("thing's name");
 - [**type**](#type): stores a constructor function that may be used for creating new instances each time
 - [**singleton**](#singleton): stores a constructor function that may be used for create a single instance
 
+
 ### stuff
 
 Just stores something within the bag itself. No modification whatsoever is taken upon the stored data.
@@ -41,6 +42,7 @@ var myStuffBack = bag.grab("stuff's name");
 
 myStuff === myStuffBack; // true
 ```
+
 
 ### prototype
 
@@ -58,6 +60,7 @@ myObject.a === myPrototype.a; // true
 myObject.hasOwnProperty("a"); // false
 ```
 
+
 ### factory
 
 Stores a factory function. This function will be used to create new things each time <code>bag.grab()</code> is called.
@@ -65,36 +68,16 @@ Stores a factory function. This function will be used to create new things each 
 ```js
 var myFactory = function() { return {}; };
 // stores myFactory under "factory's name"
-bag.factory("factory's name", myFactory); 
+bag.factory("factory's name", myFactory);
 
 // grabs oneThing created by the myFactory function
-var oneThing = bag.grab("factory's name"); 
+var oneThing = bag.grab("factory's name");
 // grabs anotherThing created by the myFactory function
-var anotherThing = bag.grab("factory's name"); 
+var anotherThing = bag.grab("factory's name");
 
 oneThing === anotherThing; // false
 ```
 
-The stored factory function may also receive aditional arguments upon calling <code>bag.grab()</code> like so:
-
-```js
-var argsFactory = function(arg1, arg2) {
-  return {
-    a1: arg1,
-    a2: arg2
-  };
-};
-// stores argsFactory under "args factory name"
-bag.factory("args factory name", argsFactory);
-
-var arg1 = {};
-var arg2 = {};
-// grabs someThing created by the argsFactory function passing some arguments
-var someThing = bag.grab("args factory name", arg1, arg2);
-
-someThing.a1 === arg1; // true
-someThing.a2 === arg2; // true
-```
 
 ### lazy
 
@@ -103,36 +86,16 @@ Stores a lazy function. This function will be used only once to create a new thi
 ```js
 var myLazy = function() { return {}; };
 // stores myLazy under "lazy's name"
-bag.lazy("lazy's name", myLazy); 
+bag.lazy("lazy's name", myLazy);
 
 // grabs a thing created by the myLazy function
-var thing = bag.grab("lazy's name"); 
+var thing = bag.grab("lazy's name");
 // grabs the sameThing created by the myLazy function previously
-var sameThing = bag.grab("lazy's name"); 
+var sameThing = bag.grab("lazy's name");
 
 thing === sameThing; // true
 ```
 
-The stored lazy function may also receive aditional arguments upon calling <code>bag.grab()</code> like so:
-
-```js
-var argsLazy = function(arg1, arg2) {
-  return {
-    a1: arg1,
-    a2: arg2
-  };
-};
-// stores argsLazy under "args lazy name"
-bag.lazy("args lazy name", argsLazy);
-
-var arg1 = {};
-var arg2 = {};
-// grabs someLazyThing created by the argsLazy function passing some arguments
-var someLazyThing = bag.grab("args lazy name", arg1, arg2);
-
-someLazyThing.a1 === arg1; // true
-someLazyThing.a2 === arg2; // true
-```
 
 ### type
 
@@ -141,36 +104,18 @@ Stores a type constructor function. This function will be used as a constructor 
 ```js
 var MyConstructor = function() {};
 // stores MyConstructor under "type's name"
-bag.type("type's name", MyConstructor); 
+bag.type("type's name", MyConstructor);
 
 // grabs anInstance created by the MyConstructor function
-var anInstance = bag.grab("type's name"); 
+var anInstance = bag.grab("type's name");
 // grabs anotherInstance created by the MyConstructor function
-var anotherInstance = bag.grab("type's name"); 
+var anotherInstance = bag.grab("type's name");
 
 anInstance === anotherInstance; // false
 anInstance instanceof MyConstructor; // true
 anotherInstance instanceof MyConstructor; // true
 ```
 
-The stored type constructor function may also receive aditional arguments upon calling <code>bag.grab()</code> like so:
-
-```js
-var ArgsConstructor = function(arg1, arg2) {
-  this.a1 = arg1;
-  this.a2 = arg2;
-};
-// stores ArgsConstructor under "args type name"
-bag.type("args type name", ArgsConstructor);
-
-var arg1 = {};
-var arg2 = {};
-// grabs someInstance created by the ArgsConstructor function passing some arguments
-var someInstance = bag.grab("args type name", arg1, arg2);
-
-someInstance.a1 === arg1; // true
-someInstance.a2 === arg2; // true
-```
 
 ### singleton
 
@@ -179,117 +124,13 @@ Stores a type constructor function as a singleton. This function will be used as
 ```js
 var MySingletonConstructor = function() {};
 // stores MySingletonConstructor under "singleton's name"
-bag.singleton("singleton's name", MySingletonConstructor); 
+bag.singleton("singleton's name", MySingletonConstructor);
 
 // grabs aSingleton created by the MySingletonConstructor function
-var aSingleton = bag.grab("singleton's name"); 
+var aSingleton = bag.grab("singleton's name");
 // grabs sameSingleton created by the MySingletonConstructor function previously
-var sameSingleton = bag.grab("singleton's name"); 
+var sameSingleton = bag.grab("singleton's name");
 
 aSingleton === sameSingleton; // true
 aSingleton instanceof MySingletonConstructor; // true
-```
-
-The stored type constructor function may also receive aditional arguments upon calling <code>bag.grab()</code> like so:
-
-```js
-var ArgsSingletonConstructor = function(arg1, arg2) {
-  this.a1 = arg1;
-  this.a2 = arg2;
-};
-// stores ArgsSingletonConstructor under "args singleton name"
-bag.singleton("args singleton name", ArgsSingletonConstructor);
-
-var arg1 = {};
-var arg2 = {};
-// grabs someSingleton created by the ArgsSingletonConstructor function passing some arguments
-var someSingleton = bag.grab("args singleton name", arg1, arg2);
-
-someSingleton.a1 === arg1; // true
-someSingleton.a2 === arg2; // true
-```
-
-## bags
-
-**Bilbo** has different types for **bags** for different occasions. 
-
-The standard **Bag** will issue an error whenever you tries to **grab** a stuff that isn't there. For testing purposes, **bilbo** offers a [**MockingBag**](#nockingbag), that builds mocks objects whenever you try to grab a stuff that isn't there instead. Lastly, **bilbo** also offers a [**RequiringBag**](#requiringbag) that will try to resolve dependencies on it's own whenever you try to require something that isn't there yet.
-
-### MockingBag
-
-The **MockingBag** is a bag creates and stores empty objects when things are not found within. It's intended for **testing** usage.
-
-When the bag creates objects it will store them with the [**"stuff"**](#stuff) storage method. Like so, modifying objects will modify created references within.
-
-```js
-// Creates a MockingBag with the name "mocking bag's name"
-var bag = bilbo.mockingBag("mocking bag's name");
-
-// Creates an empty object and stores it under the "thing" name within the bag
-var thing = bag.grab("thing");
-thing instanceof Object; // true
-
-// References are kept, so if you ask for the same thing again, you'll get the same thing
-thing === bag.grab("thing"); // true
-```
-
-### RequiringBag
-
-The RequiringBag is a bag that tries to **require** things when
-they are not found within. It's intended for **production** use.
-
-It uses the thing's name along with it's given **root** to locate
-required things.
-
-The require things can **hint** the RequiringBag to a specific
-storage method. The requiring bag looks for a property named
-**"precious"** or **"〇"** (Unicode Character 'IDEOGRAPHIC NUMBER ZERO'
-(U+3007)) within the required thing. The property may have the
-following values as hints: [**"prototype"**](#prototype), [**"lazy"**](#lazy)
-[**"singleton"**](#singleton), [**"factory"**](#factory), [**"type"**](#type) and
-[**"stuff"**](#stuff). The default storage method is [**stuff**](#stuff).
-
-```js
-// file: Thing.js
-
-var Thing = {
-  name: "Thing"
-};
-
-module.exports = Thing;
-```
-
-```js
-// file: SomeThing.js
-
-var SomeThing = {
-  name: "SomeThing",
-  
-  // hints the RequiringBag to store this as a prototype
-  "〇" : "prototype" 
-};
-
-module.exports = SomeThing;
-```
-
-```js
-// Creates a RequiringBag with the name "requiring bag's name" using process.cwd() as root
-var bag = bilbo.requiringBag("requiring bag's name", process.cwd());
-
-// Forces the RequiringBag to look for a file named process.cwd() + "/Thing.js" and require it
-// Thing is stored with the default stuff storage method
-var thing = bag.grab("/Thing");
-
-thing instanceof Object; // true
-console.log(thing.name); // "Thing"
-thing === bag.grab("/Thing"); // true
-
-// Forces the RequiringBag to look for a file named process.cwd() + "/SomeThing.js" and require it.
-// SomeThing then hints the RequiringBag through the property "〇" that it should be stored as a prototype
-var someThing = bag.grab("/SomeThing");
-
-someThing instanceof Object; // true
-console.log(someThing.name); // "SomeThing"
-someThing.hasOwnProperty("name"); // false
-someThing === bag.grab("/SomeThing"); // false
 ```
