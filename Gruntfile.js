@@ -1,19 +1,27 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     "use strict";
+
+    grunt.option("stack", true);
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
 
         meta: {
-            banner: "/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - " +
-                "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n" +
-                "<%= pkg.homepage ? \"* \" + pkg.homepage + \"\n\": \"\" %>" +
-                "* Copyright (c) <%= grunt.template.today(\"yyyy\") %> <%= pkg.author.name %>;" +
-                " Licensed <%= _.pluck(pkg.licenses, \"type\").join(\", \") %> */"
+            banner:
+                "/*! " +
+                "<%= pkg.title || pkg.name %> v<%= pkg.version %> | " +
+                "(c) <%= grunt.template.today(\"yyyy\") %> " +
+                "<%= pkg.author.name %> | " +
+                " Available via <%= pkg.license %> license " +
+                "*/"
         },
 
         uglify: {
+            options: {
+                banner: "<%= meta.banner %>\n"
+            },
+
             dist: {
                 src: "lib/bilbo.js",
                 dest: "dist/bilbo.js"
@@ -47,13 +55,21 @@ module.exports = function(grunt) {
                 node: true
             },
 
-            files: ["Gruntfile.js", "lib/**/*.js", "test/**/*.js"]
+            files: ["Gruntfile.js", "lib/**/*.js", "test/cases/**/*.js"]
+        },
+
+        jscs: {
+            src: ["Gruntfile.js", "lib/**/*.js", "test/cases/**/*.js"],
+            options: {
+                config: ".jscsrc"
+            }
         },
 
         test: {
             dev: {
                 src: [
-                    "node_modules/parts/lib/parts.js",
+                    require.resolve("parts"),
+                    require.resolve("ilk"),
                     "lib/bilbo.js",
                     "test/cases/bilbo.js"
                 ],
@@ -61,6 +77,15 @@ module.exports = function(grunt) {
                 options: {
                     config: ".gabarito-dev.rc"
                 }
+            },
+
+            ci: {
+                src: [
+                    require.resolve("parts"),
+                    require.resolve("ilk"),
+                    "lib/bilbo.js",
+                    "test/cases/bilbo.js"
+                ]
             }
         },
 
@@ -84,8 +109,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-yuidoc");
     grunt.loadNpmTasks("grunt-gabarito");
+    grunt.loadNpmTasks("grunt-jscs");
 
-    // Defaults
-    grunt.registerTask("default", ["jshint", "test", "uglify", "yuidoc"]);
+    grunt.registerTask("default", ["jscs", "jshint", "test:dev"]);
+    grunt.registerTask("ci", ["jscs", "jshint", "test:ci"]);
+    grunt.registerTask("dist", ["uglify"]);
 
 };

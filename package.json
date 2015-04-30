@@ -1,7 +1,7 @@
 {
     "name": "bilbo",
     "description" : "Dependency Injection for JavaScript",
-    "version": "0.0.7",
+    "version": "1.0.0-alpha.001",
 
     "contributors": [
         {
@@ -22,7 +22,8 @@
     },
 
     "dependencies": {
-        "parts": "0.0.1-alpha.002"
+        "parts": "0.0.1-alpha.003",
+        "ilk": "0.0.1-alpha.001"
     },
 
     "devDependencies": {
@@ -32,14 +33,13 @@
         "grunt-contrib-jshint": "*",
         "grunt-contrib-uglify": "*",
         "grunt-contrib-yuidoc": "~0.4.0",
+        "grunt-jscs": "^1.6.0",
 
-        "grunt": "~0.4.0",
-        "grunt-shell": "0.2.0",
-        "grunt-bump": "0.0.2"
+        "grunt": "~0.4.0"
     },
 
     "scripts": {
-        "test": "grunt"
+        "test": "grunt ci"
     },
 
     "license": "MIT"
