@@ -39,9 +39,9 @@
         return mock;
     };
 
-    var testPrecious = function (precious) {
+    var testRegister = function (register, precious) {
         return function () {
-            var o = { precious: precious };
+            var o = parts.make()(register, precious).build();
             var bag = stdBilbo.bag();
             bag[precious] = mock(function (n, s) {
                 assert.areSame("o", n);
@@ -51,6 +51,14 @@
             bag.register("o", o);
             bag[precious].verify();
         };
+    };
+
+    var testRing = function (precious) {
+        return testRegister("\u3007", precious);
+    };
+
+    var testPrecious = function (precious) {
+        return testRegister("precious", precious);
     };
 
     gabarito.add(parts.make()
@@ -206,6 +214,24 @@
 
     ("should register a thing as a lazy if specified within precious",
     testPrecious("lazy"))
+
+    ("should register a thing as a stuff if specified within ring",
+    testRing("stuff"))
+
+    ("should register a thing as a prototype if specified within ring",
+    testRing("prototype"))
+
+    ("should register a thing as a type if specified within ring",
+    testRing("type"))
+
+    ("should register a thing as a factory if specified within ring",
+    testRing("factory"))
+
+    ("should register a thing as a singleton if specified within ring",
+    testRing("singleton"))
+
+    ("should register a thing as a lazy if specified within ring",
+    testRing("lazy"))
 
     ("dummy", undefined).build());
 
