@@ -3,16 +3,18 @@
     "description" : "Dependency Injection for JavaScript",
     "version": "1.0.0-alpha.001",
 
+    "author": {
+        "name": "Pablo José Cabrera Muñoz",
+        "email": "pablo.cabrera.munoz@gmail.com"
+    },
+
     "contributors": [
-        {
-            "name": "Pablo Cabrera",
-            "email": "pablo.cabrera.munoz@gmail.com"
-        },
         {
             "name": "Thiago Caiubi",
             "email": "thiago.caiubi@gmail.com"
         }
     ],
+
     "main": "./lib/bilbo.js",
 
 
@@ -27,15 +29,14 @@
     },
 
     "devDependencies": {
-        "gabarito": "0.0.1-alpha.002",
-        "grunt-gabarito": "0.0.1-alpha.002",
+        "gabarito": "0.0.1-alpha.004",
+        "grunt-gabarito": "0.0.1-alpha.003",
 
-        "grunt-contrib-jshint": "*",
-        "grunt-contrib-uglify": "*",
-        "grunt-contrib-yuidoc": "~0.4.0",
-        "grunt-jscs": "^1.6.0",
-
-        "grunt": "~0.4.0"
+        "grunt": "~0.4.0",
+        "grunt-contrib-jshint": "^0.11.2",
+        "grunt-contrib-uglify": "^0.9.1",
+        "grunt-contrib-yuidoc": "^0.7.0",
+        "grunt-jscs": "^1.6.0"
     },
 
     "scripts": {
