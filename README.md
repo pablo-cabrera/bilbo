@@ -3,7 +3,7 @@ bilbo [![Build Status](https://travis-ci.org/pablo-cabrera/bilbo.png)](https://t
 
 **Bilbo** is a simple dependency injection library for JavaScript. It's intended audience is for **node-js** applications, but it can also be used for **client-side** applications.
 
-He uses [**bags**](#bags) to store and distribute dependencies along your code. **Bags** are identifies by it's **name** within **bilbo**.
+He uses **bags** to store and distribute dependencies along your code. **Bags** are identifies by it's **name** within **bilbo**.
 
 ```js
 var bilbo = require("bilbo");
