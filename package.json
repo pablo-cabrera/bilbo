@@ -1,47 +1,37 @@
 {
     "name": "bilbo",
-    "description" : "Dependency Injection for JavaScript",
-    "version": "1.0.0-alpha.001",
-
+    "description": "Dependency Injection for JavaScript",
+    "version": "1.0.0",
     "author": {
         "name": "Pablo José Cabrera Muñoz",
         "email": "pablo.cabrera.munoz@gmail.com"
     },
-
     "contributors": [
         {
             "name": "Thiago Caiubi",
             "email": "thiago.caiubi@gmail.com"
         }
     ],
-
     "main": "./lib/bilbo.js",
-
-
-    "repository":  {
+    "repository": {
         "type": "git",
         "url": "http://github.com/pablo-cabrera/bilbo.git"
     },
-
     "dependencies": {
-        "parts": "0.0.1-alpha.003",
-        "ilk": "0.0.1-alpha.001"
+        "parts": "0.0.2",
+        "ilk": "0.3.0"
     },
-
     "devDependencies": {
-        "gabarito": "0.0.1-alpha.004",
-        "grunt-gabarito": "0.0.1-alpha.003",
-
+        "gabarito": "^0.0.1",
+        "grunt-gabarito": "^0.0.5",
         "grunt": "~0.4.0",
         "grunt-contrib-jshint": "^0.11.2",
         "grunt-contrib-uglify": "^0.9.1",
         "grunt-contrib-yuidoc": "^0.7.0",
         "grunt-jscs": "^1.6.0"
     },
-
     "scripts": {
-        "test": "grunt ci"
+        "test": "grunt"
     },
-
     "license": "MIT"
 }

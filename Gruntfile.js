@@ -65,28 +65,18 @@ module.exports = function (grunt) {
             }
         },
 
-        test: {
-            dev: {
-                src: [
-                    require.resolve("parts"),
-                    require.resolve("ilk"),
-                    "lib/bilbo.js",
-                    "test/cases/bilbo.js"
-                ],
+        gabarito: {
+            src: [
+                require.resolve("parts"),
+                require.resolve("ilk"),
+                "lib/bilbo.js",
+                "test/cases/bilbo.js"
+            ],
 
-                options: {
-                    config: ".gabarito-dev.rc"
-                }
-            },
-
-            ci: {
-                src: [
-                    require.resolve("parts"),
-                    require.resolve("ilk"),
-                    "lib/bilbo.js",
-                    "test/cases/bilbo.js"
-                ]
+            options: {
+                environments: ["node", "phantom"]
             }
+
         },
 
         yuidoc: {
@@ -111,8 +101,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-gabarito");
     grunt.loadNpmTasks("grunt-jscs");
 
-    grunt.registerTask("default", ["jscs", "jshint", "test:dev"]);
-    grunt.registerTask("ci", ["jscs", "jshint", "test:ci"]);
+    grunt.registerTask("default", ["jscs", "jshint", "gabarito"]);
     grunt.registerTask("dist", ["uglify"]);
 
 };
